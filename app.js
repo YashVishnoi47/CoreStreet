@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 const ownerRouter = require('./routes/owner-router');
 const usersRouter = require('./routes/users-router');
 const productsRouter = require('./routes/porducts-router');
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const db = require("./config/mongoose-connection"); 
 
 

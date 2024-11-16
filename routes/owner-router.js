@@ -33,8 +33,8 @@ if (process.env.NODE_ENV === "development") {
 };
 
 
-router.get("/", function (req, res) {
-    res.send("owners");
-});
+// router.get("/", function (req, res) {
+//     res.send("owners");
+// });
 
 module.exports = router;
