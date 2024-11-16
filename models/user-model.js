@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const ownerSchema = mongoose.Schema({
   fullname: {
     type: String,
@@ -13,10 +12,6 @@ const ownerSchema = mongoose.Schema({
   Password: {
     type: String,
   },
-  contact: {
-    type: Number,
-    required: true,
-  },
   picture: {
     type: String,
   },
@@ -28,8 +23,6 @@ const ownerSchema = mongoose.Schema({
     type: Array,
     default: [],
   },
-
-  isAdmin: Boolean,
 });
 
 module.exports = mongoose.model("owner", ownerSchema);

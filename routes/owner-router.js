@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ownerModel = require('../models/ownes-model');
 
-// Only allow creation of owner in development mode
+// owner Route
 if (process.env.NODE_ENV === "development") {
     router.post("/create", async function (req, res) {
         try {
