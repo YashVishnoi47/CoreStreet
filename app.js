@@ -1,4 +1,9 @@
 const express = require('express');
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 
 
@@ -8,7 +13,6 @@ const usersRouter = require('./routes/users-router');
 const productsRouter = require('./routes/porducts-router');
 const db = require("./config/mongoose-connection"); 
 
-const app = express();
 
 
 
@@ -16,6 +20,8 @@ const app = express();
 app.use('/users', usersRouter);
 app.use('/owner', ownerRouter);
 app.use('/product', productsRouter);
+
+
 
 
 
