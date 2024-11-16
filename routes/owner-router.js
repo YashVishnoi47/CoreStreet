@@ -30,7 +30,8 @@ if (process.env.NODE_ENV === "development") {
             res.status(500).send("Internal Server Error");
         }
     });
-}
+};
+
 
 router.get("/", function (req, res) {
     res.send("owners");
