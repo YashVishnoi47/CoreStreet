@@ -1,15 +1,30 @@
 const express = require("express");
 const path = require("path");
+const app = express();
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
+const expressSession = require("express-session");
 require("dotenv").config();
 
-const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
+app.use(flash())
+app.use(expressSession({
+    resave: false,                 // Prevents unnecessary session resaving
+    saveUninitialized: false,      // Does not save uninitialized sessions
+    secret: process.env.SESSION_SECRET || 'fallback-secret-key', // Ensure a valid secret is always provided
+    cookie: {
+        httpOnly: true,            // Helps prevent cross-site scripting (XSS)
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        maxAge: 1000 * 60 * 60 * 24, // Session cookie expiry (1 day)
+    },
+}));
 
 // ejs setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded({ extended: true }));
 
 // Import routes
 const ownerRouter = require("./routes/owner-router");

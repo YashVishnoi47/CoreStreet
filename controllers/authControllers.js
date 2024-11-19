@@ -8,13 +8,15 @@ module.exports.registerUser = async function (req, res) {
     const { email, password, fullname } = req.body;
 
     if (!email || !password || !fullname) {
-      return res.status(400).send("All fields are required");
+      req.flash("error", "All fields are required");
+      return res.redirect("/");
     }
 
     // Check if the user already exists
     const userExists = await userModel.findOne({ email });
     if (userExists) {
-      return res.status(401).send("User already exists");
+      req.flash("error", "User already exists");
+      return res.redirect("/");
     }
 
     // Hash the password
@@ -31,10 +33,14 @@ module.exports.registerUser = async function (req, res) {
     // Generate token
     const token = generateToken(newUser);
     res.cookie("token", token);
-    res.status(201).send("User registered successfully!");
+    req.flash("error", "User Registered, Done");
+    return res.redirect("/");
   } catch (error) {
-    console.error("Error in registerUser:", error.message);
-    res.status(500).send("Server error");
+    req.flash("error", "Something Went wrong");
+    return res.redirect("/");
+
+    // console.error("Error in registerUser:", error.message);
+    // res.status(500).send("Server error");
   }
 };
 
@@ -44,14 +50,17 @@ module.exports.loginUser = async function (req, res) {
 
     // Validate input
     if (!email || !password) {
-      return res.status(400).send("Email and password are required");
+      // return res.status(400).send("Email and password are required");
+      req.flash("error", "Email and password are required");
+      return res.redirect("/");
     }
 
     // Find the user by email
     const user = await userModel.findOne({ email });
 
     if (!user) {
-      return res.status(401).send("Invalid email or password");
+      req.flash("error", "Invalid email or password");
+      return res.redirect("/");
     }
 
     // Compare the provided password with the hashed password
@@ -60,12 +69,20 @@ module.exports.loginUser = async function (req, res) {
     if (isMatch) {
       const token = generateToken(user);
       res.cookie("token", token);
-      res.send("Login successful!");
+      res.redirect("/shop");
     } else {
-      return res.status(401).send("Invalid email or password");
+      req.flash("error", "Invalid email or password");
+      return res.redirect("/");
     }
   } catch (err) {
-    console.error("Error in loginUser:", err.message);
-    res.status(500).send("Server error");
+    // console.error("Error in loginUser:", err.message);
+    // res.status(500).send("Server error");
+    req.flash("error", "Something went wrong");
+    return res.redirect("/");
   }
+};
+
+module.exports.logout = function (req, res) {
+  res.cookie("token", "");
+  res.redirect("/");
 };
