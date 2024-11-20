@@ -6,8 +6,8 @@ const productSchema = mongoose.Schema({
     name: {
         type: String,
     },
-    picture: {
-        type: String,
+    image: {
+        type: Buffer,
     },
     discount: {
         type: Number,

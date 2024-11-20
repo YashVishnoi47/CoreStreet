@@ -29,7 +29,7 @@ app.set("view engine", "ejs");
 // Import routes
 const ownerRouter = require("./routes/owner-router");
 const usersRouter = require("./routes/users-router");
-const productsRouter = require("./routes/porducts-router");
+const productsRouter = require("./routes/products-router");
 const indexRouter = require("./routes/index");
 const db = require("./config/mongoose-connection");
 
