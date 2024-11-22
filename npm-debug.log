@@ -1,0 +1,34 @@
+0 info it worked if it ends with ok
+1 verbose cli [
+1 verbose cli   'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\yashv\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'watch:css'
+1 verbose cli ]
+2 info using npm@2.15.12
+3 info using node@v22.11.0
+4 verbose run-script [ 'prewatch:css', 'watch:css', 'postwatch:css' ]
+5 info prewatch:css e-commerce-store-for-a-cloth-brand@1.0.0
+6 info watch:css e-commerce-store-for-a-cloth-brand@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 verbose stack TypeError [ERR_INVALID_ARG_VALUE]: The property 'options.env['npm_package_description']' must be a string without null bytes. Received '��#\x00 \x00E\x00-\x00C\x00o\x00m\x00m\x00e\x00r\x00c\x00e\x00-\x00C\x00l\x00o\x00t\x00h\x00-\x00B\x00r\x00a\x00n\x00d\x00-\x00...
+8 verbose stack     at validateArgumentNullCheck (node:child_process:971:11)
+8 verbose stack     at normalizeSpawnArguments (node:child_process:698:7)
+8 verbose stack     at spawn (node:child_process:752:13)
+8 verbose stack     at spawn (C:\Users\yashv\node_modules\npm\lib\utils\spawn.js:7:13)
+8 verbose stack     at runCmd_ (C:\Users\yashv\node_modules\npm\lib\utils\lifecycle.js:211:14)
+8 verbose stack     at runCmd (C:\Users\yashv\node_modules\npm\lib\utils\lifecycle.js:176:5)
+8 verbose stack     at runPackageLifecycle (C:\Users\yashv\node_modules\npm\lib\utils\lifecycle.js:138:3)
+8 verbose stack     at Array.<anonymous> (C:\Users\yashv\node_modules\npm\node_modules\slide\lib\bind-actor.js:15:8)
+8 verbose stack     at LOOP (C:\Users\yashv\node_modules\npm\node_modules\slide\lib\chain.js:15:14)
+8 verbose stack     at chain (C:\Users\yashv\node_modules\npm\node_modules\slide\lib\chain.js:20:5)
+9 verbose cwd C:\Users\yashv\OneDrive\Desktop\My Projects\E-Commerce Store For a Cloth Brand
+10 error Windows_NT 10.0.22631
+11 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\yashv\\node_modules\\npm\\bin\\npm-cli.js" "run" "watch:css"
+12 error node v22.11.0
+13 error npm  v2.15.12
+14 error code ERR_INVALID_ARG_VALUE
+15 error The property 'options.env['npm_package_description']' must be a string without null bytes. Received '��#\x00 \x00E\x00-\x00C\x00o\x00m\x00m\x00e\x00r\x00c\x00e\x00-\x00C\x00l\x00o\x00t\x00h\x00-\x00B\x00r\x00a\x00n\x00d\x00-\x00...
+16 error If you need help, you may report this error at:
+16 error     <https://github.com/npm/npm/issues>
+17 verbose exit [ 1, true ]

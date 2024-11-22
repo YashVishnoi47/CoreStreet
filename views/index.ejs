@@ -1,46 +1,95 @@
-<%- include('./partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
 
-<% if(error.length>0){ %>
-    <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
-        <span class="inline-block mt-1 mb-1 text-white">
-            <%= error %>
-        </span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/stylesheets/styling.css" rel="stylesheet">
+</head>
+<body class="w-full h-screen flex flex-col justify-center items-center  selection:bg-blue-500 selection:text-white">
+
+    <div id="flash-message" class="flash-message opacity-100">
+
+        <% if(error.length>0){ %>
+            <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
+                <span class="inline-block  text-white">
+                    <%= error %>
+                </span>
+            </div>
+            <% } %>
+
+            
     </div>
-    <% } %>
-            <div class="w-full h-screen flex px-20">
-                <div class="w-1/2 flex items-center justify-center h-screen">
-                    <div class="w-full px-32">
-                        <h3 class="text-4xl">welcome to <span class="text-blue-400 font-semibold">Scatch</span></h3>
-                        <h4 class="text-2xl mb-5">create your account</h4>
-                        <form autocomplete="off" action="/users/register" method="post">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+
+
+
+    <div class="navbar border-b-2 border-blue-500 relative h-[10rem] flex min-w-full  ">
+        <div class="left relative flex items-center h-full w-[50%]  ">
+            <h1 class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">CoreStreet </h1>
+        </div>
+
+        <div class="right relative h-full w-[50%]   ">
+            <div class="nav-links flex gap-8 justify-end items-center h-full p-3">
+
+                <!-- Home -->
+                <a id="nav-btn-1" class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative" href="/home"><img src="/images/home.svg" alt=""></a>
+                <!-- Buy Now -->
+                <a id="nav-btn-1" class="px-5 rounded-full min-w-16 py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out" href="/shop">Buy now</a>
+                <!-- <a id="nav-btn-1" class="text-lg z-50 relative" href="/"></a> -->
+
+                <% if(isLoggedIn){ %>
+                    <a id="nav-btn-1" class="text-lg z-50 relative" href="/shop"><img src="/images/shop.svg" alt=""></a>
+                    <a id="nav-btn-2" class="text-2xl scale-100 hover:scale-110 transition-all duration-150 ease-in-out z-50 relative" href="/cart"><img src="/images/cart.svg" alt=""></a>
+                    <a class="text-lg" href="/profile">Profile</a>
+                    <% } %>
+
+
+                
+                
+            </div>
+        </div>
+    </div>
+
+
+        <h3 class="text-4xl relative z-50   text-center top-6  min-w-full ">Welcome to <span class="text-blue-400 font-semibold">CoreStreet</span></h3>
+                <div id="register" class="min-w-[50%] mt-[50px] mx-20 flex items-center relative justify-center h-screen">
+                    <div class="w-full px-[50px]">
+                        <h4 id="index-input" class="text-2xl mb-5">Create your <span class="text-blue-500 font-semibold">Account</span></h4>
+                        <form autocomplete="off" class="w-full" action="/users/register" method="post">
+                            <input id="index-input"
+                                class="bg-zinc-100 min-w-full block w-full px-3 py-2 border-[1px] focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded-md mb-3 border-zinc-200"
                                 type="text" placeholder="Full Name" name="fullname">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                            <input id="index-input"
+                                class="bg-zinc-100 min-w-full block w-full px-3 py-2 border-[1px] focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded-md mb-3 border-zinc-200"
                                 type="email" placeholder="Email" name="email">
-                            <input
-                                class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                            <input id="index-input"
+                                class="bg-zinc-100 min-w-full block w-full px-3 py-2 border-[1px] focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded-md mb-3 border-zinc-200"
                                 type="password" placeholder="Password" name="password">
-                            <input class="px-5 rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
+                            <input id="index-input" class="px-5 rounded-full min-w-full py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out" type="submit"
                                 value="Create My Account">
                         </form>
                     </div>
                 </div>
-                <div class="w-1/2 flex items-center justify-center h-screen">
-                    <div class="w-full px-32">
-                        <h4 class="text-2xl capitalize mb-5">login your account</h4>
-                        <form autocomplete="off" action="/users/login" method="post">
-                            <input
-                                class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                <div id="login" class="min-w-[50%] mx-20 flex items-center justify-center h-screen">
+                    <div class="w-full px-[50px]">
+                        <h4 id="index-input" class="text-2xl capitalize mb-5">login your <span class="text-blue-500 font-semibold">Account</span></h4>
+                        <form autocomplete="off" class="w-full" action="/users/login" method="post">
+                            <input id="index-input"
+                                class="block bg-zinc-100 min-w-full  px-3 py-2 border-[1px] focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded-md mb-3 border-zinc-200"
                                 type="email" placeholder="Email" name="email">
-                            <input
-                                class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
+                            <input id="index-input"
+                                class="block bg-zinc-100 min-w-full  px-3 py-2 border-[1px] focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded-md mb-3 border-zinc-200"
                                 type="password" placeholder="Password" name="password">
-                            <input class="px-5 block rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
+                            <input id="index-input" class="px-5 min-w-full block rounded-full py-3 mt-4 bg-blue-500 hover:bg-blue-600 cursor-pointer text-white transition-all duration-200 ease-in-out" type="submit"
                                 value="Login">
                         </form>
                     </div>
                 </div>
-            </div>
-            <%- include('./partials/footer') %>
+            
+
+</body>
+<script src="/javascripts/logic.js"></script>
+</html>

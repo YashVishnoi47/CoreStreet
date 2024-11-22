@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { registerUser, loginUser, logout } = require("../controllers/authControllers");
-
 router.get("/", function (req, res) {
   res.send("hey");
 });

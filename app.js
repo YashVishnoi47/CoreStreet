@@ -6,6 +6,9 @@ const flash = require("connect-flash");
 const expressSession = require("express-session");
 require("dotenv").config();
 
+
+
+app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())

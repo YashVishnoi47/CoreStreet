@@ -6,7 +6,7 @@ const flash = require("connect-flash");
 module.exports = async function (req, res, next) {
   if (!req.cookies.token) {
     req.flash("error", "you must be logged in");
-    return res.redirect("/login");
+    return res.redirect("/");
   }
 
   try {
@@ -14,7 +14,15 @@ module.exports = async function (req, res, next) {
     let user = await userModel
       .findOne({ email: decoded.email })
       .select("-password");
-    req.user = user;
+    // req.user = user;
+
+    if (user) {
+      req.user = user; // Attach user data to the request
+      req.isLoggedIn = true; // User is logged in
+    } else {
+      req.isLoggedIn = false; // Fallback in case user isn't found
+    }
+
     next();
   } catch (error) {
     req.flash("error", "you must be logged in");
