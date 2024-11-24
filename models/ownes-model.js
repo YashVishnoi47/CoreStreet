@@ -12,6 +12,7 @@ const ownerSchema = mongoose.Schema({
   },
   Password: {
     type: String,
+    required: true,
   },
   picture: {
     type: String,
@@ -19,6 +20,11 @@ const ownerSchema = mongoose.Schema({
   products: {
     type: Array,
     default: [],
+  },
+  role: {
+    type: String,
+    enum: ['admin', 'owner'],
+    default: 'owner',
   },
   gstin: String,
 });

@@ -11,13 +11,27 @@
 
 <body class="w-full h-screen select-none">
 
-    <% if(success.length>0){ %>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
-            <span class="inline-block mt-1 mb-1 text-white">
-                <%= success %>
-            </span>
+    
+    <div id="flash-message" class="flash-message opacity-100">
+
+            <% if(success.length>0){ %>
+                <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+                    <span class="inline-block mt-1 mb-1 text-white">
+                        <%= success %>
+                    </span>
+                </div>
+                <% } %>
+
+            <% if(error.length>0){ %>
+                <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
+                    <span class="inline-block  text-white">
+                        <%= error %>
+                    </span>
+                </div>
+                <% } %>
+    
+                
         </div>
-        <% } %>
 
             <!-- Navbar for Admin -->
             <div class="navbar border-b-2 border-blue-500 relative h-[5rem] flex min-w-full">
@@ -41,7 +55,7 @@
                         <!-- logout -->
                         <a id="nav-logout"
                             class="px-5 flex justify-center items-centern gap-2 rounded-full min-w- py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
-                            href="/owner/ownerlogout">Logout <img src="/images/logout.svg" alt="" /></a>
+                            href="/users/logout">Logout <img src="/images/logout.svg" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -53,19 +67,19 @@
                             Create New Product
                         </h2>
                         <form class="flex flex-col justify-center items-center mt-8" autocomplete="off"
-                            action="/product/create" method="post" enctype="multipart/form-data">
+                            action="/owner/editproduct/<%= product._id %>" method="post">
                             <div class="mb-6 w-1/2">
                                 <h3 class="text-xl font-semibold mb-2">Product Details</h3>
                                 <div class="mb-4">
-                                    <label class="block mb-2 text-lg font-medium">Product Image</label>
-                                    <input name="image" type="file" class="py-2 px-4 rounded" value="Select File" />
+                                    <p class="text-green-500">Sorry, You can not change the product image,</p>
+                                    <span class="text-red-500"> This Feature in not available yet!</span>
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
-                                    <input name="name" type="text" placeholder="Product Name"
+                                    <input name="name" value="<%= product.name %>" type="text" placeholder="Product Name"
                                         class="border p-2 focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded w-full" />
-                                    <input name="price" type="text" placeholder="Product Price"
+                                    <input name="price" value="<%= product.price %>" type="text" placeholder="Product Price"
                                         class="border p-2 focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded w-full" />
-                                    <input name="discount" type="text" placeholder="Discount Price"
+                                    <input name="discount" value="<%= product.discount %>" type="text" placeholder="Discount Price"
                                         class="border p-2 focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded w-full" />
                                 </div>
                             </div>
@@ -73,23 +87,24 @@
                             <div class="w-1/2">
                                 <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
                                 <div class="grid grid-cols-2 gap-4">
-                                    <input name="bgcolor" type="text" placeholder="Background Color"
+                                    <input name="bgcolor" value="<%= product.bgcolor %>" type="text" placeholder="Background Color"
                                         class="border p-2 focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded w-full" />
-                                    <input name="panecolor" type="text" placeholder="Panel Color"
+                                    <input name="panecolor" value="<%= product.panecolor %>" type="text" placeholder="Panel Color"
                                         class="border p-2 focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded w-full" />
-                                    <input name="textcolor" type="text" placeholder="Text Color"
+                                    <input name="textcolor" value="<%= product.textcolor %>" type="text" placeholder="Text Color"
                                         class="border p-2 focus:outline-blue-500 transition-all duration-300 outline-none focus:shadow-blue_shadow_500 focus:placeholder:text-blue-500 ease-in-out rounded w-full" />
                                 </div>
                             </div>
                             <input
                                 class="px-5 py-2 mt-4 hover:bg-blue-600 transition-all duration-200 ease-in-out cursor-pointer rounded bg-blue-500 text-white"
-                                type="submit" value="Create New Product" />
+                                type="submit" value="Save Changes" />
                         </form>
                     </main>
                 </div>
             </div>
 
             
-                
+
+                <script src="/javascripts/logic.js"></script>
 </body>
 </html>

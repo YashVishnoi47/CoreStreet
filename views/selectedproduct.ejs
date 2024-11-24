@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+</head>
+
+<body class="w-full  h-screen select-none">
+
+    <div id="flash-message" class="flash-message opacity-100">
+
+        <% if(success.length>0){ %>
+            <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+                <span class="inline-block mt-1 mb-1 text-white">
+                    <%= success %>
+                </span>
+            </div>
+            <% } %>
+
+                <% if(error.length>0){ %>
+                    <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
+                        <span class="inline-block  text-white">
+                            <%= error %>
+                        </span>
+                    </div>
+                    <% } %>
+
+
+    </div>
+
+    <div class="navbar border-b-2 border-blue-500 relative h-[5rem] flex min-w-full  ">
+        <div class="left relative flex items-center h-full w-[50%]  ">
+            <a href="/shop">
+                <h1 class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">
+                    CoreStreet </h1>
+            </a>
+        </div>
+
+        <div class="right relative h-full w-[50%]   ">
+            <div class="nav-links flex gap-8 justify-end items-center h-full p-3">
+
+
+
+
+                <!-- Home -->
+                <a id="nav-home"
+                    class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative"
+                    href="/shop"><img src="/images/home.svg" alt=""></a>
+
+                <% if(isloggedin){ %>
+                    <a id="nav-btn-2"
+                        class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative"
+                        href="/cart"><img src="/images/cart.svg" alt=""></a>
+                    <% } %>
+
+                        <!-- logout -->
+                        <a id="nav-logout"
+                            class="px-5 flex justify-center items-centern gap-2 rounded-full min-w- py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                            href="/users/logout">Logout <img src="/images/logout.svg" alt=""></a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full h-[80%] flex ">
+        <div class="left h-full w-1/2  relative flex justify-center items-center  p-4">
+            <img class="border-2 h-96" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
+        </div>
+
+        <div class="right h-[80%] flex-col  w-1/2  relative flex justify-center items-left  p-4">
+            <div class="p-3 flex flex-col gap-3 w-full h-[70%]">
+                <p class="text-4xl w-full">
+                    <%= product.name %>
+                </p>
+                <p class="text-2xl text-green-500">
+                    <%= product.price %>
+                </p>
+                <p class="text-lg text-red-500">
+                    <%= product.discount %>
+                </p>
+            </div>
+            <a class="px-5 flex justify-center items-centern gap-2 rounded-full min-w- py-3 mt-4 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                href="/addtocart/<%= product._id %>">Add to Cart</a>
+
+        </div>
+
+    </div>
+
+
+    <script src="/javascripts/logic.js"></script>
+</body>
+
+</html>
