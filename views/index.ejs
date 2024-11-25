@@ -31,30 +31,37 @@
             <h1 class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">CoreStreet </h1>
         </div>
 
-        <div class="right relative h-full w-[50%]   ">
+        <div class="right relative h-full w-[50%]">
             <div class="nav-links flex gap-8 justify-end items-center h-full p-3">
 
                 <!-- Home -->
                 <a id="nav-btn-1" class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative" href="/home"><img src="/images/home.svg" alt=""></a>
                 <!-- Buy Now -->
                 <a id="nav-btn-1" class="px-5 rounded-full min-w-16 py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out" href="/shop">Buy now</a>
-                <!-- <a id="nav-btn-1" class="text-lg z-50 relative" href="/"></a> -->
 
-                <% if(isLoggedIn){ %>
-                    <a id="nav-btn-1" class="text-lg z-50 relative" href="/shop"><img src="/images/shop.svg" alt=""></a>
-                    <a id="nav-btn-2" class="text-2xl scale-100 hover:scale-110 transition-all duration-150 ease-in-out z-50 relative" href="/cart"><img src="/images/cart.svg" alt=""></a>
-                    <a class="text-lg" href="/profile">Profile</a>
-                    <% } %>
+                <div class="menu-btn">
+                    <img id="nav-menu" class="nav-menu w-6 h-6 cursor-pointer" src="/images/menu.svg" alt="" >
+                </div>
 
-
-                
-                
             </div>
         </div>
+
+        
     </div>
+    
+    <div class="res-nav border-2 z-50 justify-center   w-full relative top-0">
+        <div class=" res-nav-in p-6 flex flex-col gap-10  h-auto  min-w-[80%] border-2 top-4 border-black absolute">
+            <!-- Home -->
+            <a id="nav-btn-1" class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out  relative" href="/home">Home</a>
+            <!-- Buy Now -->
+            <a id="nav-btn-1" class="px-5 rounded-full  py-3 mt-2 bg-blue-500 w-[100%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out" href="/shop">Buy now</a>
+        </div>
+    </div>
+    
 
 
-        <h3 class="text-4xl relative z-50   text-center top-6  min-w-full ">Welcome to <span class="text-blue-400 font-semibold">CoreStreet</span></h3>
+
+        <h3 class="text-4xl relative    text-center top-6  min-w-full ">Welcome to <span class="text-blue-400 font-semibold">CoreStreet</span></h3>
                 <div id="register" class="min-w-[50%] mt-[50px] mx-20 flex items-center relative justify-center h-screen">
                     <div class="w-full px-[50px]">
                         <h4 id="index-input" class="text-2xl mb-5">Create your <span class="text-blue-500 font-semibold">Account</span></h4>

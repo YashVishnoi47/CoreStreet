@@ -6,9 +6,38 @@
 }
 
 
+.menu-btn{
+    display: none;
+}
+
+.res-nav{
+    display: none;
+}
+
+.res-nav-in{
+    backdrop-filter: blur(100px);
+}
 .logo{
     font-family: Playfair Display;
-};
+}
+
+/* Media */
+
+
+@media (max-width: 500px) {
+    .right{
+        display: none;
+    }
+
+    .menu-btn{
+        display: flex;
+    }
+}
+
+
+
+
+
 
 
 
