@@ -8,6 +8,8 @@ module.exports = {
     extend: {
       boxShadow:{
         "blue_shadow_500": "0 4px 10px rgba(59, 130, 246, 0.5)",
+        "black-shadow": "0px 0px 10px rgba(0, 0, 0, 0.2)",
+        "blue-shadow": "0px 0px 10px rgba(59, 130, 246, 0.5)"
       },
       
     },

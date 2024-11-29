@@ -22,6 +22,10 @@ const productSchema = mongoose.Schema({
   bgcolor: String,
   panecolor: String,
   textcolor: String,
+  // outofstock:{
+  //   type:Boolean,
+  //   default: true,
+  // }
 });
 
 module.exports = mongoose.model("product", productSchema);

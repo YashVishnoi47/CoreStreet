@@ -11,14 +11,14 @@ module.exports.registerUser = async function (req, res) {
 
     if (!email || !password || !fullname) {
       req.flash("error", "All fields are required");
-      return res.redirect("/");
+      return res.redirect("/register");
     }
 
     // Check if the user already exists
     const userExists = await userModel.findOne({ email });
     if (userExists) {
       req.flash("error", "User already exists");
-      return res.redirect("/");
+      return res.redirect("/register");
     }
 
     // Hash the password
@@ -36,10 +36,10 @@ module.exports.registerUser = async function (req, res) {
     const token = generateToken(newUser);
     res.cookie("token", token);
     req.flash("error", "User Registered, Done");
-    return res.redirect("/");
+    return res.redirect("/register");
   } catch (error) {
     req.flash("error", "Something Went wrong");
-    return res.redirect("/");
+    return res.redirect("/register");
 
     // console.error("Error in registerUser:", error.message);
     // res.status(500).send("Server error");
@@ -54,7 +54,7 @@ module.exports.loginUser = async function (req, res) {
     if (!email || !password) {
       // return res.status(400).send("Email and password are required");
       req.flash("error", "Email and password are required");
-      return res.redirect("/");
+      return res.redirect("/register");
     }
 
     // Find the user by email
@@ -62,7 +62,7 @@ module.exports.loginUser = async function (req, res) {
 
     if (!user) {
       req.flash("error", "Invalid email or password");
-      return res.redirect("/");
+      return res.redirect("/register");
     }
 
     // Compare the provided password with the hashed password
@@ -71,16 +71,16 @@ module.exports.loginUser = async function (req, res) {
     if (isMatch) {
       const token = generateToken(user);
       res.cookie("token", token);
-      res.redirect("/shop");
+      res.redirect("/");
     } else {
       req.flash("error", "Invalid email or password");
-      return res.redirect("/");
+      return res.redirect("/register");
     }
   } catch (err) {
     // console.error("Error in loginUser:", err.message);
     // res.status(500).send("Server error");
     req.flash("error", "Something went wrong");
-    return res.redirect("/");
+    return res.redirect("/register");
   }
 };
 

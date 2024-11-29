@@ -23,15 +23,15 @@
             </div>
             <% } %>
 
-        <% if(error.length>0){ %>
-            <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
-                <span class="inline-block  text-white">
-                    <%= error %>
-                </span>
-            </div>
-            <% } %>
+                <% if(error.length>0){ %>
+                    <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
+                        <span class="inline-block  text-white">
+                            <%= error %>
+                        </span>
+                    </div>
+                    <% } %>
 
-            
+
     </div>
 
     <!-- Navbar for Admin -->
@@ -86,59 +86,67 @@
             </div>
         </div> -->
 
-        <div class="w-full h-full  p-4"> 
-            <p class="border-2 inline-block p-2">Total Products: <span class="text-blue-500"><%= products.length %></span></p>
-            
+    <div class="w-full h-full  p-4">
+        <p class="border-2 inline-block p-2">Total Products: <span class="text-blue-500">
+                <%= products.length %>
+            </span></p>
 
 
-            
 
-            <% if (products.length===0) { %>
-                <div class="w-full h-full flex flex-col justify-center items-center">
-                    <img class="h-44" src="/images/empty.svg" alt="">
-                    <h2 class="mt-4 text-2xl text-blue-500">No products found</h2>
-                </div>
-                <% } else { %>
-                    <div class="w-full  flex flex-col gap-5 h-screen">  
-                        <div class="flex  items-start gap-5">
-                            <% products.forEach(function(product) { %>
-                                <div class="w-60 ">
-                                    <div class="w-full h-52 flex items-center justify-center" bg-[<%=product.bgcolor %>
-                                        ]>
-                                        <img class="h-[12rem]"
-                                            src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="" />
-                                    </div>
-                                    <div class="flex justify-between items-center px-4 py-4" bg-[<%=product.panecolor %>
-                                        ] text-[<%=product.textcolor %>]>
-                                            <div>
-                                                <h3>
-                                                    <%= product.name %>
-                                                </h3>
-                                                <h4>₹ <%= product.price %>
-                                                </h4>
-                                            </div>
 
-                                            <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
-                                                href="/owner/editproduct/<%= product._id %>">
-                                                <img src="/images/edit.svg" alt="">
-                                            </a>
 
-                                            <form method="post" action="/owner/deleteproduct/<%= product._id %>">
-                                                <button type="submit" class="w-7 h-7 flex items-center justify-center rounded-full bg-white">
-                                                    <img src="/images/delete.svg" alt="">
-                                                </button>
-                                            </form>
-
-                                    </div>
+        <% if (products.length===0) { %>
+            <div class="w-full h-full flex flex-col justify-center items-center">
+                <img class="h-44" src="/images/empty.svg" alt="">
+                <h2 class="mt-4 text-2xl text-blue-500">No products found</h2>
+            </div>
+            <% } else { %>
+                <div class="w-full  flex flex-col gap-5 h-screen">
+                    <div class="flex  items-start gap-5">
+                        <% products.forEach(function(product) { %>
+                            <div class="w-60 shadow-black-shadow rounded-lg mt-4 ">
+                                <div class="w-full h-52 flex items-center justify-center" bg-[<%=product.bgcolor %>
+                                    ]>
+                                    <img class="h-[12rem]"
+                                        src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="" />
                                 </div>
-                                <% }) %>
-                        </div>
+                                <div class="flex justify-between items-center px-4 py-4" bg-[<%=product.panecolor %>
+                                    ] text-[<%=product.textcolor %>]>
+                                        <div>
+                                            <h3>
+                                                <%= product.name %>
+                                            </h3>
+                                            <h4>₹ <%= product.price %>
+                                            </h4>
+                                        </div>
+
+                                        <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white"
+                                            href="/owner/editproduct/<%= product._id %>">
+                                            <img src="/images/edit.svg" alt="">
+                                        </a>
+
+                                        <form method="post" action="/owner/deleteproduct/<%= product._id %>">
+                                            <button type="submit"
+                                                class="w-7 h-7 flex items-center justify-center rounded-full bg-white">
+                                                <img src="/images/delete.svg" alt="">
+                                            </button>
+                                        </form>
+
+                                        <!-- <a type="submit" href="/product/outofstock/<%= product._id %>"
+                                            class="w-7 h-7 flex items-center justify-center rounded-full bg-white">
+                                            <img src="/images/outofstock.svg" alt=""> <%= product.outOfStock ? 'Mark as In Stock' : 'Mark as Out of Stock' %>
+                                        </a> -->
+
+                                </div>
+                            </div>
+                            <% }) %>
                     </div>
-                        <% } %>
-        </div>
+                </div>
+                <% } %>
+    </div>
 
 
-        
+
 
     </div>
 

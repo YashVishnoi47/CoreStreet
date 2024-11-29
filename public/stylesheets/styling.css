@@ -1,18 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 
+
 *{
     font-family: Exo2;
+    user-select: none;
 }
+
+/* body{
+    transition: all 2s ease-in-out;
+    
+    
+} */
 
 
 .menu-btn{
     display: none;
 }
 
-.res-nav{
-    display: none;
-}
 
 .res-nav-in{
     backdrop-filter: blur(100px);
@@ -20,6 +25,36 @@
 .logo{
     font-family: Playfair Display;
 }
+.res-nav{
+    display: none;
+}
+/* .product-image:hover .main-cloth-shop{
+    border-radius: 1rem;
+} */
+
+
+.main-cloth-shop:hover .add-to-cart-btn{
+    opacity: 1;
+}
+
+/* Rating Star */
+.star-rating {
+    display: flex;
+    cursor: pointer;
+  }
+  
+  .star-rating span {
+    font-size: 2rem;
+    color: gray; /* Default star color */
+    transition: color 0.3s;
+  }
+  
+  .star-rating span.selected {
+    color: gold; /* Highlighted star color */
+  }
+  .selected {
+    color: gold; /* Highlighted star color */
+  }
 
 /* Media */
 
@@ -28,9 +63,129 @@
     .right{
         display: none;
     }
+    .main-div-2{
+        flex-direction: column;
+        align-items: center;
+    }
 
     .menu-btn{
-        display: flex;
+        display: block;
+    }
+
+    .corestreet{
+        font-size: 1.875rem;
+    }
+    .add-to-cart-btn{
+        opacity: 1;
+    }
+
+    .alert-msg-1,.alert-msg-2{
+        font-size: smaller;
+    }
+}
+
+
+@media (max-width: 900px){
+    .product-price-details{
+        gap: 3rem;
+    }
+
+    .total-product-amount{
+        gap: 2rem;
+        
+    }
+
+    .disabled-on-mobile{
+        display: none;
+    }
+}
+
+
+@media (max-width: 600px){
+    .main-cart-product{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer{
+        flex-direction: column;
+        
+    }
+
+    .footer-right{
+        border-left: none;
+        border-top: 2px solid #3B82F6;
+    }
+    .footer-left{
+        border-right: none;
+    }
+
+    .footer-right-head-1{
+        font-size: 1rem;
+    }
+
+    .main-left,.main-right{
+        width: 100%;
+    }
+    .total-product-amount{
+        flex-direction: column;
+    }
+
+    .product-box-right-name{
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+    }
+
+    .time-deal{
+        /* padding-left:2.5px ;
+        padding-right:2.5px ;
+        padding-bottom: 1px;
+        padding-top: 1px; */
+        scale: 0.7;
+    }
+}
+
+
+
+
+
+
+
+  
+
+
+@media (max-width: 1300px){
+    .main-landing-div-1{
+        flex-direction: column;
+    }
+
+    .banner-image{
+        display: none;
+    }
+
+    .navbar{
+        position: relative;
+    }
+
+    .landing-logo{
+        color: #3B82F6;
+    }
+
+    .product-box{
+        flex-direction: column;
+    }
+
+    .product-box-left{
+        width: 100%;
+        padding: 0;
+    }
+    .product-box-right{
+        width: 100%;
+    }
+
+    .product-box-right-div{
+        min-width: auto;
     }
 }
 

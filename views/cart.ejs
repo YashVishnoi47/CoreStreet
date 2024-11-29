@@ -7,14 +7,38 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="/css/style.css" rel="stylesheet" />
+    <link href="/stylesheets/styling.css" rel="stylesheet" />
 </head>
 
 <body>
 
+
+    <div id="flash-message" class="flash-message opacity-100">
+
+        <% if(success.length>0){ %>
+            <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+                <span class="inline-block mt-1 mb-1 text-white">
+                    <%= success %>
+                </span>
+            </div>
+            <% } %>
+
+                <% if(error.length>0){ %>
+                    <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
+                        <span class="inline-block  text-white">
+                            <%= error %>
+                        </span>
+                    </div>
+                    <% } %>
+
+
+    </div>
+
     <div class="navbar border-b-2 border-blue-500 relative h-[5rem] flex min-w-full  ">
         <div class="left relative flex items-center h-full w-[50%]  ">
             <a href="/shop">
-                <h1 class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">CoreStreet
+                <h1 class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">
+                    CoreStreet
                 </h1>
             </a>
         </div>
@@ -40,72 +64,132 @@
 
             </div>
         </div>
+
+        <div id="menu-btn" class="menu-btn right-2 top-6 z-50 absolute">
+            <img id="nav-menu" class="nav-menu w-8 h-8 cursor-pointer" src="/images/menu.svg" alt="" />
+        </div>
+    </div>
+
+    <div id="res-nav"
+        class="res-nav transition-all duration-200 ease-in-out z-50 items-center justify-center w-full relative left-5 top-0">
+        <div class="res-nav-in p-6 flex flex-col gap-4 h-auto min-w-[90%] border-2 top-4 border-blue-500 absolute">
+            <!-- Home -->
+            <a id="nav-btn-1"
+                class="px-5 rounded-full py-3 mt-2 bg-blue-500 w-[100%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                href="/home">Home</a>
+
+            <% if(isLoggedIn){ %>
+                <a id="nav-btn-2"
+                    class="px-5 rounded-full py-3 mt-2 bg-blue-500 w-[100%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                    href="/cart">Cart</a>
+                <% } %>
+
+                    <!-- logout -->
+                    <a id="nav-logout"
+                        class="px-5 flex gap-2 rounded-full min-w- py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                        href="/users/logout">Logout <img src="/images/logout.svg" alt="" /></a>
+        </div>
     </div>
 
 
+    <div class="w-full h-auto flex flex-col gap-10 px-8 py-8">
 
-
-    <div class="w-full h-screen flex flex-col gap-10 px-20 py-20">
-        
         <% user.cart.forEach((product)=> { %>
-            <div class="flex items-start gap-10">
+            <div class=" main-cart-product flex items-start gap-8 border p-6 shadow-black-shadow hover:shadow-blue-shadow transition-all duration-200 ease-in-out rounded-2xl ">
+                
                 <!-- Left section (Product Card) -->
-                <div class="w-[30%] rounded-md overflow-hidden">
-                    <div class="w-full h-80 bg-yellow-500 flex justify-center items-center">
+                <div class="main-left w-[30%] rounded-md overflow-hidden">
+                    <div class="w-full h-80 bg-yellow-500 flex justify-center items-center rounded-xl">
                         <img class="h-[12rem]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
                             alt="Product Image">
                     </div>
-                    <div class="w-full flex justify-between px-5 py-4">
-                        <h3 class="text-2xl">
-                            <%= product.name %>
-                        </h3>
-                        <div class="flex items-center gap-2">
-                            <i class="w-7 h-7 bg-white flex rounded-full items-center justify-center ri-add-line"></i>
-                            <div class="px-2 py-1 rounded-md bg-white text-black">
-                                <%= product.quantity %>
+                    <div class="w-full flex flex-col justify-between gap-2 px-5 py-4 disabled-on-mobile">
+                        <div class="flex gap-60 w-full border-b p-2">
+                            <h3 class="text-2xl w-[200px]">
+                                <%= product.name %>
+                            </h3>
+    
+                            <div class="flex items-center gap-2 ">
+                                <!-- <i class="w-7 h-7 bg-white flex rounded-full items-center justify-center ri-add-line"></i> -->
+                                <a href="/removefromcart/<%= product._id %>"
+                                    class="w-7 h-7 bg-white flex rounded-full items-center justify-center ">
+                                    <img src="/images/delete.svg" alt="">
+                                </a>
+                                
                             </div>
-                            <i
-                                class="w-7 h-7 bg-white flex rounded-full items-center justify-center ri-subtract-line"></i>
+
                         </div>
-                    </div>
-                    <div class="flex items-center justify-between px-5 py-3">
-                        <h4 class="text-lg">Net Total</h4>
-                        <h2 class="text-lg">₹ <%= (product.price)-(product.discount) + 20   %>
-                        </h2>
+
+                        <div class="px-2 py-1 rounded-md bg-white text-black">
+                            <a id="buy-now"
+                                class="px-5 flex justify-center items-centern gap-2 rounded-full min-w- py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                                href="*">Buy now</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Right section (Price Breakdown for this product) -->
-                <div class="w-[70%]">
-                    <h3 class="text-xl">Price Breakdown</h3>
-                    <div class="px-10 mt-5">
-                        <div class="flex mt-2">
-                            <h4 class="w-1/3">Total MRP</h4>
-                            <h4>₹ <%= product.price %>
-                            </h4>
+                <div class="w-[70%] main-right">
+                    <h3 class="text-xl">Price Breakdown </h3>
+                    <div class="px-10 product-price-details mt-5 flex gap-60">
+                        <div class="left-in">
+                            <div class="flex gap-72 mt-2">
+                                <h4 class="min-w-[100px]">Total MRP -</h4>
+                            </div>
+                            <div class="flex gap-72 mt-2">
+                                <h4 class="min-w-[100px]">Discount -</h4>
+                            </div>
+                            <div class="flex gap-72 mt-2">
+                                <h4 class="min-w-[101px]">Platform Fee -</h4>
+                            </div>
+                            <div class="flex gap-72 mt-2">
+                                <h4 class="min-w-[100px]">Shipping Fee -</h4>
+                            </div>
                         </div>
-                        <div class="flex mt-2">
-                            <h4 class="w-1/3">Discount on MRP</h4>
-                            <h4>₹ <%= product.discount %>
-                            </h4>
-                        </div>
-                        <div class="flex mt-2">
-                            <h4 class="w-1/3">Platform Fee</h4>
-                            <h4>₹ 20</h4>
-                        </div>
-                        <div class="flex mt-2">
-                            <h4 class="w-1/3">Shipping Fee</h4>
-                            <h4>FREE</h4>
+                        <div class="right-in">
+                            <div class="flex gap-72 mt-2">
+                                <h4 class="min-w-[50px]">₹ <%= product.price %>
+                                </h4>
+                            </div>
+
+                            <div class="flex gap-72 mt-2">
+                                <!-- <h4 class="">Discount</h4> -->
+                                <h4 class="min-w-[50px]">₹ <%= product.discount %>
+                                </h4>
+                            </div>
+
+                            <div class="flex gap-72 mt-2">
+                                <!-- <h4 class="">Platform Fee</h4> -->
+                                <h4 class="min-w-[50px]">₹ 20</h4>
+                            </div>
+
+                            <div class="flex gap-72 mt-2">
+                                <!-- <h4 class="">Shipping Fee</h4> -->
+                                <h4 class="min-w-[50px]">FREE</h4>
+                            </div>
+
+
+
                         </div>
                     </div>
                     <div class="w-full h-[1px] bg-black mt-10"></div>
-                    <div class="flex mt-5">
-                        <h3 class="w-1/3 text-xl">Total Amount</h3>
-                        <h3 class="font-semibold text-xl text-green-600">₹ <%= (product.price)-(product.discount) + 20
-                                %>
-                        </h3>
+
+                    <div class="total-product-amount px-10 mt-5 flex gap-48  w-[100%] ">
+                        <div class="">
+                            <h3 class=" w-[150px] text-xl">Total Amount (₹)</h3>
+
+                        </div>
+
+                        <div>
+                            <h3 class="  w-auto font-semibold text-xl text-green-600">
+                                <%= (product.price)-(product.discount) + 20 %>
+                            </h3>
+
+                        </div>
                     </div>
                 </div>
+
+                
             </div>
             <% }) %>
     </div>
@@ -116,9 +200,7 @@
 
 
 
-
+    <script src="/javascripts/logic.js"></script>
 </body>
 
 </html>
-
-<%- include('./partials/footer') %>

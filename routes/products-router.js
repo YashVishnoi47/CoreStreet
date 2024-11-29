@@ -85,4 +85,31 @@ router.get("/selectedproduct/:id", isloggedin, async function (req, res) {
   }
 });
 
+// router.get("/outofstock/:id", isowner, async function (req, res) {
+//   try {
+//     let product = await productModel.findOne({ id: req.params._id });
+
+//     if (!product) {
+//       req.flash("error", "Product not found");
+//       return res.redirect("/product/allproducts");
+//     }
+
+//     product.outofstock = !product.outofstock;
+
+//     await product.save();
+
+//     req.flash(
+//       "success",
+//       product.outOfStock
+//         ? "Product is now out of stock."
+//         : "Product is back in stock."
+//     );
+//     res.redirect("/product/allproducts"); 
+//   } catch (error) {
+//     // console.error("Error toggling out of stock status:", err);
+//     req.flash("error", "Failed to update stock status");
+//     res.redirect("/product/allproducts");
+//   }
+// });
+
 module.exports = router;

@@ -7,12 +7,13 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="/css/style.css" rel="stylesheet" />
+    <link href="/stylesheets/styling.css" rel="stylesheet" />
 </head>
 
-<body class="w-full  h-screen select-none">
+<body class="w-full flex flex-col items-center   h-screen select-none">
 
     <div id="flash-message" class="flash-message opacity-100">
-
+    
         <% if(success.length>0){ %>
             <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
                 <span class="inline-block mt-1 mb-1 text-white">
@@ -20,7 +21,7 @@
                 </span>
             </div>
             <% } %>
-
+    
                 <% if(error.length>0){ %>
                     <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
                         <span class="inline-block  text-white">
@@ -28,11 +29,11 @@
                         </span>
                     </div>
                     <% } %>
-
-
+    
+    
     </div>
 
-    <div class="navbar border-b-2 border-blue-500 relative h-[5rem] flex min-w-full  ">
+    <div class="navbar border-b-2  border-blue-500 h-[5rem] flex min-w-full  ">
         <div class="left relative flex items-center h-full w-[50%]  ">
             <a href="/shop">
                 <h1 class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">
@@ -66,28 +67,52 @@
         </div>
     </div>
 
-    <div class="w-full h-[80%] flex ">
-        <div class="left h-full w-1/2  relative flex justify-center items-center  p-4">
-            <img class="border-2 h-96" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
+    <div class="product-box w-[80%]    mt-12  min-h-auto flex ">
+        <div class="product-box-left h-full w-1/2 relative flex justify-center items-center p-4  ">
+            <img class="border-2 min-h-[100%]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
         </div>
-
-        <div class="right h-[80%] flex-col  w-1/2  relative flex justify-center items-left  p-4">
-            <div class="p-3 flex flex-col gap-3 w-full h-[70%]">
-                <p class="text-4xl w-full">
+    
+        <div class="product-box-right h-[80%] flex-col  w-1/2  relative flex justify-center items-left  p-4">
+            <div class="product-box-right-div-1 p-3 flex flex-col gap-3 w-[100%]   min-h-[50%] border-b-2">
+                <h1 class="text-sm font-medium text-blue-500 mb-2">CORESTREET CLOTHING</h1>
+                <p class="product-box-right-name text-4xl w-full">
                     <%= product.name %>
                 </p>
-                <p class="text-2xl text-green-500">
-                    <%= product.price %>
-                </p>
-                <p class="text-lg text-red-500">
-                    <%= product.discount %>
-                </p>
+                <div class="time-deal-div flex justify-start  deal min-w-auto">
+                    <p
+                        class="time-deal border-2 px-[5px] py-[3px] font-medium rounded-md bg-[#CC0C39] text-white border-[#CC0C39] inline-block">
+                        Time Limited deal</p>
+                </div>
+                <div class="price">
+                    <p class="text-2xl text-black">
+                        ₹ <%= product.price %> <span class="text-gray-400 text-xs">M.R.P</span> <span
+                                class="line-through text-base text-red-500">₹ <%= product.discount %></span>
+                    </p>
+                    <p class="text-sm">(Incl. of all taxes)</p>
+                </div>
+    
             </div>
-            <a class="px-5 flex justify-center items-centern gap-2 rounded-full min-w- py-3 mt-4 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
-                href="/addtocart/<%= product._id %>">Add to Cart</a>
 
+            <div class="min-w-full">
+                <a class="px-5 flex justify-center items-centern gap-2 rounded-full min-w- py-3 mt-4 bg-blue-500 m-w-[100%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                    href="/addtocart/<%= product._id %>">Add to Cart</a>
+            </div>
         </div>
+    
+    </div>
 
+
+    <div class="product-review border-2 mt-4 min-w-full relative min-h-screen">
+        <div class="Customer Reviews z-50 relative">
+            <div class="star-rating">
+                <span class="stars" data-value="1">★</span>
+                <span class="stars" data-value="2">★</span>
+                <span class="stars" data-value="3">★</span>
+                <span class="stars" data-value="4">★</span>
+                <span class="stars" data-value="5">★</span>
+            </div>
+            <p>Your rating: <span id="rating-value">0</span></p>
+        </div>
     </div>
 
 
