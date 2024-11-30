@@ -21,11 +21,13 @@ router.get("/",async function (req, res) {
   
 });
 
+// Rendering Register page
 router.get("/register", function (req, res) {
   let error = req.flash("error");
   res.render("index", { error, isLoggedIn: req.isLoggedIn, user: req.user });
 });
 
+// Rendering Shop page
 router.get("/shop", isloggedIn, async function (req, res) {
   let products = await productModel.find();
   let success = req.flash("success");
@@ -39,6 +41,7 @@ router.get("/shop", isloggedIn, async function (req, res) {
   });
 });
 
+// Rendering Cart page
 router.get("/cart", isloggedIn, async function (req, res) {
   let user = await userModel
     .findOne({ email: req.user.email })
@@ -57,6 +60,7 @@ router.get("/cart", isloggedIn, async function (req, res) {
   // console.log(user);
 });
 
+// Adding the product to cart
 router.get("/addtocart/:productid", isloggedIn, async function (req, res) {
   let user = await userModel.findOne({ email: req.user.email });
 
@@ -71,7 +75,7 @@ router.get("/addtocart/:productid", isloggedIn, async function (req, res) {
   res.redirect("/");
 });
 
-
+// Removing the product from cart
 router.get("/removefromcart/:productid",isloggedIn, async function (req, res) {
   try {
     let user = await userModel.findOne({email: req.user.email});
@@ -91,6 +95,7 @@ router.get("/removefromcart/:productid",isloggedIn, async function (req, res) {
   
 })
 
+// Deleting the product form the cart
 router.post("/deletecartproduct/:productid",isloggedIn,async function(req,res){
   try {
     const productid = req.params.productid;

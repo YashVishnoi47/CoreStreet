@@ -3,8 +3,10 @@ const router = express.Router();
 const upload = require("../config/multer-config");
 const productModel = require("../models/product-modle");
 const ownerModel = require("../models/ownes-model");
+const userModel = require("../models/user-model");
 const isowner = require("../middleware/IsOwner");
 const isloggedin = require("../middleware/isloggedin");
+const reviewModel = require("../models/review-model");
 
 router.post(
   "/create",
@@ -84,32 +86,5 @@ router.get("/selectedproduct/:id", isloggedin, async function (req, res) {
     res.status(500).send("Internal Server Error");
   }
 });
-
-// router.get("/outofstock/:id", isowner, async function (req, res) {
-//   try {
-//     let product = await productModel.findOne({ id: req.params._id });
-
-//     if (!product) {
-//       req.flash("error", "Product not found");
-//       return res.redirect("/product/allproducts");
-//     }
-
-//     product.outofstock = !product.outofstock;
-
-//     await product.save();
-
-//     req.flash(
-//       "success",
-//       product.outOfStock
-//         ? "Product is now out of stock."
-//         : "Product is back in stock."
-//     );
-//     res.redirect("/product/allproducts"); 
-//   } catch (error) {
-//     // console.error("Error toggling out of stock status:", err);
-//     req.flash("error", "Failed to update stock status");
-//     res.redirect("/product/allproducts");
-//   }
-// });
 
 module.exports = router;
