@@ -19,6 +19,10 @@ const productSchema = mongoose.Schema({
     ref: "owner",
     required: true,
   },
+  reviews:{
+    type:Array,
+    default:[],
+  },
   bgcolor: String,
   panecolor: String,
   textcolor: String,

@@ -13,7 +13,7 @@
 <body class="w-full flex flex-col items-center   h-screen select-none">
 
     <div id="flash-message" class="flash-message opacity-100">
-    
+
         <% if(success.length>0){ %>
             <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
                 <span class="inline-block mt-1 mb-1 text-white">
@@ -21,7 +21,7 @@
                 </span>
             </div>
             <% } %>
-    
+
                 <% if(error.length>0){ %>
                     <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
                         <span class="inline-block  text-white">
@@ -29,8 +29,8 @@
                         </span>
                     </div>
                     <% } %>
-    
-    
+
+
     </div>
 
     <div class="navbar border-b-2  border-blue-500 h-[5rem] flex min-w-full  ">
@@ -67,11 +67,12 @@
         </div>
     </div>
 
-    <div class="product-box w-[80%]    mt-12  min-h-auto flex ">
+    <div class="product-box w-[80%] mt-12  min-h-auto flex ">
         <div class="product-box-left h-full w-1/2 relative flex justify-center items-center p-4  ">
-            <img class="border-2 min-h-[100%]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
+            <img class="border-2 min-h-[100%]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+                alt="">
         </div>
-    
+
         <div class="product-box-right h-[80%] flex-col  w-1/2  relative flex justify-center items-left  p-4">
             <div class="product-box-right-div-1 p-3 flex flex-col gap-3 w-[100%]   min-h-[50%] border-b-2">
                 <h1 class="text-sm font-medium text-blue-500 mb-2">CORESTREET CLOTHING</h1>
@@ -90,7 +91,7 @@
                     </p>
                     <p class="text-sm">(Incl. of all taxes)</p>
                 </div>
-    
+
             </div>
 
             <div class="min-w-full">
@@ -98,12 +99,13 @@
                     href="/addtocart/<%= product._id %>">Add to Cart</a>
             </div>
         </div>
-    
+
     </div>
 
 
-    <div class="product-review border-2 mt-4 min-w-full relative min-h-screen">
-        <div class="Customer Reviews z-50 relative">
+    <div
+        class="product-review  items-center flex flex-col justify-between border-2 mt-4 min-w-full relative min-h-screen">
+        <div class="Customer min-h-auto border-2 w-full flex flex-col items-center py-5 text-center Raiting z-50 relative">
             <div class="star-rating">
                 <span class="stars" data-value="1">★</span>
                 <span class="stars" data-value="2">★</span>
@@ -111,8 +113,51 @@
                 <span class="stars" data-value="4">★</span>
                 <span class="stars" data-value="5">★</span>
             </div>
-            <p>Your rating: <span id="rating-value">0</span></p>
+            <p>Your rating: <span id="rating-value">
+                    <%= reviews.length %>
+                </span></p>
+            <a class="" href="/product/<%= product._id %>/review">Comment</a>
+
+
         </div>
+
+        <div class="product-reviews mt-10 w-full h-[80%] ">
+
+            <div class="reviews h-full  gap-10 w-full px-6 py-6 flex flex-wrap">
+                <h1 class="w-full text-center text-3xl font-medium">Product Reviews</h1>
+                <div class="flex mt-5 flex-wrap gap-10 w-full h-full">
+                    <% if (reviews.length> 0) { %>
+                        <% reviews.forEach(function(review) { %>
+                            <div class="review flex p-2 flex-col h-[35%] w-[25%] rounded-2xl border-2  border-black shadow-black-shadow hover:-translate-y-2  hover:shadow-blue-shadow  transition-all duration-200 ease-in-out ">
+                                <div class="r-top border-b-2 flex items-center gap-2  h-[30%]">
+                                    <img class="h-5" src="/images/account.svg" alt="">
+                                    <p>
+                                        <%= review.user.fullname %>
+                                    </p>
+    
+                                    <div class="star ml-3">
+                                        <p>⭐⭐⭐⭐⭐</p>
+                                    </div>
+                                </div>
+                                <div class="r-bottom p-2 hover:text-amber-400 transition-all duration-200 ease-in-out  h-[70%]">
+                                    <p>
+                                        <%= review.comment %>
+                                    </p>
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% } else { %>
+                                    <p>No reviews available</p>
+                                    <% } %>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
     </div>
 
 

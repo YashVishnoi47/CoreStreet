@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/stylesheets/styling.css" rel="stylesheet" />
+</head>
+<body>
+
+    
+    
+
+
+        <div class="navbar border-b-2 border-blue-500 relative h-[5rem] flex min-w-full">
+            <div class="left relative flex items-center h-full w-[50%]">
+                <a href="/shop">
+                    <h1
+                        class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">
+                        CoreStreet
+                    </h1>
+                </a>
+            </div>
+
+            <div class="right relative h-full w-[50%]">
+                <div class="nav-links flex gap-8 justify-end items-center h-full p-3">
+                    <!-- Home -->
+                    <a id="nav-home"
+                        class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative"
+                        href="/"><img src="/images/home.svg" alt="" /></a>
+
+                    <% if(isloggedin){ %>
+                        <a id="nav-btn-2"
+                            class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative"
+                            href="/cart"><img src="/images/cart.svg" alt="" /></a>
+                        <% } %>
+
+                            <!-- logout -->
+                            <a id="nav-logout"
+                                class="px-5 flex justify-center items-centern gap-2 rounded-full  py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                                href="/users/logout">Logout <img src="/images/logout.svg" alt="" /></a>
+                </div>
+            </div>
+
+            <div id="menu-btn" class="menu-btn right-2 top-6 z-50 absolute">
+                <img id="nav-menu" class="nav-menu w-8 h-8 cursor-pointer" src="/images/menu.svg" alt="" />
+            </div>
+        </div>
+
+        <form action="/product/<%= product._id %>/review" method="post">
+            <input class="border-2" type="text" name="comment" id="" placeholder="Comment">
+            <input type="submit" value="Comment">
+
+        </form>
+
+        <div class="input">
+            <% reviews.forEach(function(review) { %>
+              <p><%= review.comment %></p>
+            <% }); %>
+          </div>
+
+
+
+        <script src="/javascripts/logic.js"></script>
+</body>
+</html>

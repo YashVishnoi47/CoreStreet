@@ -47,6 +47,66 @@ router.post(
   }
 );
 
+router.post("/:id/review", isloggedin, async function (req, res) {
+  try {
+    const { comment } = req.body;
+
+    if (!comment) {
+      req.flash("error", "Cannont post emplty comment");
+      return redirect("/shop");
+    }
+
+    const product = await productModel.findById(req.params.id);
+    const user = 
+                await userModel
+                .findById(req.user._id)
+                
+
+    if (!product) {
+      req.flash("error", "Product not found");
+      console.log(error.message);
+      return redirect("/shop");
+    }
+
+    const createdreview = await reviewModel.create({
+      comment,
+      user: req.user._id,
+      product: product._id,
+    });
+
+    product.reviews.push(createdreview);
+    await product.save();
+
+    user.reviews.push(createdreview)
+    await user.save();
+
+    return res.redirect(`/product/${req.params.id}/review`);
+  } catch (error) {
+    req.flash("erroe", "Server side review Error (Catch)");
+    console.log(error);
+    return res.redirect("/shop");
+  }
+});
+
+router.get("/:id/review", async function (req, res) {
+  try {
+    const product = await productModel.findById(req.params.id);
+    const reviews = await reviewModel.find({ product: product._id })
+    .populate("user").select("comment user");
+
+    if (!product) {
+      req.flash("error", "Product not found");
+      return res.redirect("/shop");
+    }
+
+    res.render("product-reviews", { product, isloggedin, reviews });
+  } catch (error) {
+    req.flash("error", "Internal Server Error");
+    console.log(error.message);
+    return res.redirect("/shop");
+  }
+});
+
 router.get("/allproducts", isowner, async function (req, res) {
   try {
     const ownerid = req.owner._id;
@@ -70,9 +130,15 @@ router.get("/allproducts", isowner, async function (req, res) {
 
 router.get("/selectedproduct/:id", isloggedin, async function (req, res) {
   try {
-    const productid = req.params._id;
-    const product = await productModel.findOne({ productid });
-    // const product = await productModel.findByID(productid);
+    const product = await productModel.findById(req.params.id);
+    const user = await userModel.findById(req.user._id);
+    const reviews = 
+    await reviewModel
+          .find({ product: product._id })
+          .populate("user","fullname")
+          .select("comment user");
+          // console.log(user.fullname);
+    
 
     if (!product) {
       return req.flash("error", "Product not found");
@@ -80,7 +146,7 @@ router.get("/selectedproduct/:id", isloggedin, async function (req, res) {
 
     const success = req.flash("success");
     const error = req.flash("error");
-    res.render("selectedproduct", { product, success, error, isloggedin });
+    res.render("selectedproduct", { product, success, error, isloggedin,reviews });
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).send("Internal Server Error");
