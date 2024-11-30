@@ -105,7 +105,8 @@
 
     <div
         class="product-review  items-center flex flex-col justify-between border-2 mt-4 min-w-full relative min-h-screen">
-        <div class="Customer min-h-auto border-2 w-full flex flex-col items-center py-5 text-center Raiting z-50 relative">
+        <div
+            class="Customer min-h-auto border-2 w-full flex flex-col items-center py-5 text-center Raiting z-50 relative">
             <div class="star-rating">
                 <span class="stars" data-value="1">★</span>
                 <span class="stars" data-value="2">★</span>
@@ -128,18 +129,20 @@
                 <div class="flex mt-5 flex-wrap gap-10 w-full h-full">
                     <% if (reviews.length> 0) { %>
                         <% reviews.forEach(function(review) { %>
-                            <div class="review flex p-2 flex-col h-[35%] w-[25%] rounded-2xl border-2  border-black shadow-black-shadow hover:-translate-y-2  hover:shadow-blue-shadow  transition-all duration-200 ease-in-out ">
+                            <div
+                                class="review flex p-2 flex-col h-[35%] w-[25%] rounded-2xl border-2  border-black shadow-black-shadow hover:-translate-y-2  hover:shadow-blue-shadow  transition-all duration-200 ease-in-out ">
                                 <div class="r-top border-b-2 flex items-center gap-2  h-[30%]">
                                     <img class="h-5" src="/images/account.svg" alt="">
                                     <p>
                                         <%= review.user.fullname %>
                                     </p>
-    
+
                                     <div class="star ml-3">
                                         <p>⭐⭐⭐⭐⭐</p>
                                     </div>
                                 </div>
-                                <div class="r-bottom p-2 hover:text-amber-400 transition-all duration-200 ease-in-out  h-[70%]">
+                                <div
+                                    class="r-bottom p-2 hover:text-amber-400 transition-all duration-200 ease-in-out  h-[70%]">
                                     <p>
                                         <%= review.comment %>
                                     </p>
