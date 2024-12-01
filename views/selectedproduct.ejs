@@ -14,6 +14,27 @@
 
     <div id="flash-message" class="flash-message opacity-100">
 
+        <% if(error.length>0){ %>
+            <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
+                <span class="inline-block  text-white">
+                    <%= error %>
+                </span>
+            </div>
+            <% } %>
+
+                <% if(success.length>0){ %>
+                    <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
+                        <span class="inline-block  text-white">
+                            <%= error %>
+                        </span>
+                    </div>
+                    <% } %>
+
+
+    </div>
+
+    <div id="flash-message" class="flash-message opacity-100">
+
         <% if(success.length>0){ %>
             <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
                 <span class="inline-block mt-1 mb-1 text-white">
@@ -114,19 +135,20 @@
                 <span class="stars" data-value="4">★</span>
                 <span class="stars" data-value="5">★</span>
             </div>
-            <p>Your rating: <span id="rating-value">
+            <p>Product Reviews: <span id="rating-value">
                     <%= reviews.length %>
                 </span></p>
-            <a class="" href="/product/<%= product._id %>/review">Comment</a>
+            <a class=" px-5 flex justify-center items-centern gap-2  py-2 mt-4 bg-transparent border border-black m-w-[50%] text-black hover:bg-slate-100 cursor-pointer transition-all duration-200 ease-in-out"
+                href="/product/<%= product._id %>/review">Give a Review</a>
 
 
         </div>
 
-        <div class="product-reviews mt-10 w-full h-[80%] ">
+        <div class="product-reviews mt-4 w-full   min-h-[80%] ">
 
-            <div class="reviews h-full  gap-10 w-full px-6 py-6 flex flex-wrap">
-                <h1 class="w-full text-center text-3xl font-medium">Product Reviews</h1>
-                <div class="flex mt-5 flex-wrap gap-10 w-full h-full">
+            <div class="reviews h-full  gap-4 w-full px-6 py-6 flex flex-wrap">
+                <h1 class="w-full relative top-0 text-center text-3xl font-medium">Product Reviews</h1>
+                <div class="flex mt-5 justify-center flex-wrap gap-10 w-full min-h-[100%]">
                     <% if (reviews.length> 0) { %>
                         <% reviews.forEach(function(review) { %>
                             <div

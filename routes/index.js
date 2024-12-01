@@ -71,9 +71,14 @@ router.get("/addtocart/:productid", isloggedIn, async function (req, res) {
 
   user.cart.push(req.params.productid);
   await user.save();
-  req.flash("success", "Product added to cart successfully");
-  res.redirect("/");
+  req.flash("success", "Product added to cart");
+  res.redirect("/cart");
 });
+
+router.get("/buynow",function(req,res){
+  req.flash("success","Order Feature Will be available soon");
+  res.redirect('/cart')
+})
 
 // Removing the product from cart
 router.get("/removefromcart/:productid",isloggedIn, async function (req, res) {

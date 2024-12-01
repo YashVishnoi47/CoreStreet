@@ -52,15 +52,12 @@ router.post("/:id/review", isloggedin, async function (req, res) {
     const { comment } = req.body;
 
     if (!comment) {
-      req.flash("error", "Cannont post emplty comment");
-      return redirect("/shop");
+      req.flash("error", "Cannont post empty comment");
+      return redirect(`/product/${req.params.id}/reveiw"`);
     }
 
     const product = await productModel.findById(req.params.id);
-    const user = 
-                await userModel
-                .findById(req.user._id)
-                
+    const user = await userModel.findById(req.user._id);
 
     if (!product) {
       req.flash("error", "Product not found");
@@ -77,9 +74,10 @@ router.post("/:id/review", isloggedin, async function (req, res) {
     product.reviews.push(createdreview);
     await product.save();
 
-    user.reviews.push(createdreview)
+    user.reviews.push(createdreview);
     await user.save();
 
+    req.flash("success", "Review Posted");
     return res.redirect(`/product/${req.params.id}/review`);
   } catch (error) {
     req.flash("erroe", "Server side review Error (Catch)");
@@ -91,15 +89,26 @@ router.post("/:id/review", isloggedin, async function (req, res) {
 router.get("/:id/review", async function (req, res) {
   try {
     const product = await productModel.findById(req.params.id);
-    const reviews = await reviewModel.find({ product: product._id })
-    .populate("user").select("comment user");
+    const reviews = await reviewModel
+      .find({ product: product._id })
+      .populate("user")
+      .select("comment user");
 
     if (!product) {
       req.flash("error", "Product not found");
       return res.redirect("/shop");
     }
+    const success = req.flash("success");
+    const error = req.flash("error");
 
-    res.render("product-reviews", { product, isloggedin, reviews });
+    res.render("product-reviews", {
+      product,
+      isloggedin,
+      reviews,
+      user: req.user,
+      success,
+      error,
+    });
   } catch (error) {
     req.flash("error", "Internal Server Error");
     console.log(error.message);
@@ -132,13 +141,11 @@ router.get("/selectedproduct/:id", isloggedin, async function (req, res) {
   try {
     const product = await productModel.findById(req.params.id);
     const user = await userModel.findById(req.user._id);
-    const reviews = 
-    await reviewModel
-          .find({ product: product._id })
-          .populate("user","fullname")
-          .select("comment user");
-          // console.log(user.fullname);
-    
+    const reviews = await reviewModel
+      .find({ product: product._id })
+      .populate("user", "fullname")
+      .select("comment user");
+    // console.log(user.fullname);
 
     if (!product) {
       return req.flash("error", "Product not found");
@@ -146,7 +153,13 @@ router.get("/selectedproduct/:id", isloggedin, async function (req, res) {
 
     const success = req.flash("success");
     const error = req.flash("error");
-    res.render("selectedproduct", { product, success, error, isloggedin,reviews });
+    res.render("selectedproduct", {
+      product,
+      success,
+      error,
+      isloggedin,
+      reviews,
+    });
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).send("Internal Server Error");

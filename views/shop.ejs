@@ -11,81 +11,92 @@
 </head>
 
 <body>
-    <% if(success.length>0){ %>
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
-            <span class="inline-block mt-1 mb-1 text-white">
-                <%= success %>
-            </span>
-        </div>
-        <% } %>
-            <div class="navbar border-b-2 border-blue-500 relative h-[5rem] flex min-w-full">
-                <div class="left relative flex items-center h-full w-[50%]">
-                    <a href="/shop">
-                        <h1
-                            class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">
-                            CoreStreet
-                        </h1>
-                    </a>
-                </div>
+    <div id="flash-message" class="flash-message opacity-100">
 
-                <div class="right relative h-full w-[50%]">
-                    <div class="nav-links flex gap-8 justify-end items-center h-full p-3">
-                        <!-- Home -->
-                        <a id="nav-home"
-                            class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative"
-                            href="/"><img src="/images/home.svg" alt="" /></a>
+        <% if(error.length>0){ %>
+            <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-red-500">
+                <span class="inline-block  text-white">
+                    <%= error %>
+                </span>
+            </div>
+            <% } %>
 
-                        <% if(isLoggedIn){ %>
-                            <a id="nav-btn-2"
-                                class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative"
-                                href="/cart"><img src="/images/cart.svg" alt="" /></a>
-                            <% } %>
-
-                                <!-- logout -->
-                                <a id="nav-logout"
-                                    class="px-5 flex justify-center items-centern gap-2 rounded-full  py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
-                                    href="/users/logout">Logout <img src="/images/logout.svg" alt="" /></a>
+                <% if(success.length>0){ %>
+                    <div class="absolute top-0 right-0 mt-20 mr-2 p-3 rounded-md bg-blue-500">
+                        <span class="inline-block  text-white">
+                            <%= success %>
+                        </span>
                     </div>
-                </div>
+                    <% } %>
 
-                <div id="menu-btn" class="menu-btn right-2 top-6 z-50 absolute">
-                    <img id="nav-menu" class="nav-menu w-8 h-8 cursor-pointer" src="/images/menu.svg" alt="" />
-                </div>
+
+    </div>
+    <div class="navbar border-b-2 border-blue-500 relative h-[5rem] flex min-w-full">
+        <div class="left relative flex items-center h-full w-[50%]">
+            <a href="/shop">
+                <h1 class="logo font-semibold text-blue-500 select-none cursor-pointer inline-block text-2xl p-2">
+                    CoreStreet
+                </h1>
+            </a>
+        </div>
+
+        <div class="right relative h-full w-[50%]">
+            <div class="nav-links flex gap-8 justify-end items-center h-full p-3">
+                <!-- Home -->
+                <a id="nav-home"
+                    class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative"
+                    href="/"><img src="/images/home.svg" alt="" /></a>
+
+                <% if(isLoggedIn){ %>
+                    <a id="nav-btn-2"
+                        class="text-2xl scale-100 hover:scale-110 transition-all top-1 duration-150 ease-in-out z-50 relative"
+                        href="/cart"><img src="/images/cart.svg" alt="" /></a>
+                    <% } %>
+
+                        <!-- logout -->
+                        <a id="nav-logout"
+                            class="px-5 flex justify-center items-centern gap-2 rounded-full  py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                            href="/users/logout">Logout <img src="/images/logout.svg" alt="" /></a>
             </div>
+        </div>
 
-            <div id="res-nav"
-                class="res-nav transition-all duration-200 ease-in-out z-50 items-center justify-center w-full relative left-5 top-0">
-                <div
-                    class="res-nav-in p-6 flex flex-col gap-4 h-auto min-w-[90%] border-2 top-4 border-blue-500 absolute">
-                    <!-- Home -->
-                    <a id="nav-btn-1"
-                        class="px-5 rounded-full py-3 mt-2 bg-blue-500 w-[100%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
-                        href="/home">Home</a>
+        <div id="menu-btn" class="menu-btn right-2 top-6 z-50 absolute">
+            <img id="nav-menu" class="nav-menu w-8 h-8 cursor-pointer" src="/images/menu.svg" alt="" />
+        </div>
+    </div>
 
-                    <% if(isLoggedIn){ %>
-                        <a id="nav-btn-2"
-                            class="px-5 rounded-full py-3 mt-2 bg-blue-500 w-[100%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
-                            href="/cart">Cart</a>
-                        <% } %>
+    <div id="res-nav"
+        class="res-nav transition-all duration-200 ease-in-out z-50 items-center justify-center w-full relative left-5 top-0">
+        <div class="res-nav-in p-6 flex flex-col gap-4 h-auto min-w-[90%] border-2 top-4 border-blue-500 absolute">
+            <!-- Home -->
+            <a id="nav-btn-1"
+                class="px-5 rounded-full py-3 mt-2 bg-blue-500 w-[100%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                href="/home">Home</a>
 
-                            <!-- logout -->
-                            <a id="nav-logout"
-                                class="px-5 flex gap-2 rounded-full min-w- py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
-                                href="/users/logout">Logout <img src="/images/logout.svg" alt="" /></a>
-                </div>
-            </div>
+            <% if(isLoggedIn){ %>
+                <a id="nav-btn-2"
+                    class="px-5 rounded-full py-3 mt-2 bg-blue-500 w-[100%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                    href="/cart">Cart</a>
+                <% } %>
 
-            <div class="filter h-12 w-full flex gap-3 p-2  items-center relative">
-                <p class="font-medium border-2 p-2 mt-2">
-                    Available Products - <%= products.length %>
-                </p>
-                <!-- <p>Discount Filter</p> -->
-            </div>
+                    <!-- logout -->
+                    <a id="nav-logout"
+                        class="px-5 flex gap-2 rounded-full min-w- py-3 mt-2 bg-blue-500 m-w-[50%] text-white hover:bg-blue-600 cursor-pointer transition-all duration-200 ease-in-out"
+                        href="/users/logout">Logout <img src="/images/logout.svg" alt="" /></a>
+        </div>
+    </div>
 
-            <div class="main-body w-full h-screen flex flex-col relative items-start px-8 py-8">
-                <div class="main-div-1 w-[100%] flex flex-col gap-5 h-screen">
-                    <div class="flex main-div-2 flex-wrap items-start gap-4">
-                        <!-- <% products.forEach(function(product){ %>
+    <div class="filter h-12 w-full flex gap-3 p-2  items-center relative">
+        <p class="font-medium border-2 p-2 mt-2">
+            Available Products - <%= products.length %>
+        </p>
+        <!-- <p>Discount Filter</p> -->
+    </div>
+
+    <div class="main-body w-full h-screen flex flex-col relative items-start px-8 py-8">
+        <div class="main-div-1 w-[100%] flex flex-col gap-5 h-screen">
+            <div class="flex main-div-2 flex-wrap items-start gap-4">
+                <!-- <% products.forEach(function(product){ %>
                             <a href="/product/selectedproduct/<%= product._id %>">
                                 <div class="main-cloth-shop w-60 h-[310px] shadow-black-shadow hover:shadow-blue-shadow rounded-xl transition-all duration-200 ease-in-out flex flex-col gap-5 ">
                                     <div
@@ -112,45 +123,46 @@
                             </a>
                             <% }) %> -->
 
-                        <% products.forEach(function(product){ %>
-                            <a href="/product/selectedproduct/<%= product._id %>">
-                                <!-- Main product card -->
-                                <div
-                                    class="main-cloth-shop relative w-64 h-[400px]  hover:shadow-black-shadow  transition-all duration-200 ease-in-out flex flex-col gap-1  ">
-                                    <!-- Product Image -->
-                                    <div
-                                        class="w-full relative h-[70%] flex items-center justify-center bg-[<%= product.bgcolor %>]">
-                                        <img class="h-full product-image scale-100 trasition-all duration-200 ease-in-out"
-                                            src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
-                                            alt="" />
+                <% products.forEach(function(product){ %>
+                    <a href="/product/selectedproduct/<%= product._id %>">
+                        <!-- Main product card -->
+                        <div
+                            class="main-cloth-shop relative w-64 h-[400px]  hover:shadow-black-shadow  transition-all duration-200 ease-in-out flex flex-col gap-1  ">
+                            <!-- Product Image -->
+                            <div
+                                class="w-full relative h-[70%] flex items-center justify-center bg-[<%= product.bgcolor %>]">
+                                <img class="h-full product-image scale-100 trasition-all duration-200 ease-in-out"
+                                    src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="" />
 
-                                        <!-- add to cart btn -->
-                                        <a class=" add-to-cart-btn absolute flex justify-center items-center  px-5 rounded-full py-2  bg-white w-[90%] text-blue-500 hover:bg-blue-200 hover:text-black opacity-0 cursor-pointer transition-all duration-200 ease-in-out bottom-4 "
-                                            href="/addtocart/<%= product._id %>">
-                                            <p>Add to cart</p>
-                                        </a>
-                                    </div>
-                                    <!-- product Details (Panel) -->
-                                    <div
-                                        class="flex justify-between  relative top-3  bg-[<%= product.panecolor %>] items-center px-2  text-[<%= product.textcolor %>]">
-                                        <div>
-                                            <h3 class="font-medium">
-                                                <%= product.name %>
-                                            </h3>
+                                <!-- add to cart btn -->
+                                <a class=" add-to-cart-btn absolute flex justify-center items-center  px-5 rounded-full py-2  bg-white w-[90%] text-blue-500 hover:bg-blue-200 hover:text-black opacity-0 cursor-pointer transition-all duration-200 ease-in-out bottom-4 "
+                                    href="/addtocart/<%= product._id %>">
+                                    <p>Add to cart</p>
+                                </a>
+                            </div>
+                            <!-- product Details (Panel) -->
+                            <div
+                                class="flex justify-between  relative top-3  bg-[<%= product.panecolor %>] items-center px-2  text-[<%= product.textcolor %>]">
+                                <div>
+                                    <h3 class="font-medium">
+                                        <%= product.name %>
+                                    </h3>
 
-                                            <h4 class="font-semibold">₹ <%= product.price %>
-                                            </h4>
-                                        </div>
-                                    </div>
-
+                                    <h4 class="font-semibold">₹ <%= product.price %>
+                                    </h4>
+                                    <p class="line-through text-red-500 text-lg">₹<%= product.discount %>
+                                    </p>
                                 </div>
-                            </a>
-                            <% }) %>
-                    </div>
-                </div>
-            </div>
+                            </div>
 
-            <script src="/javascripts/logic.js"></script>
+                        </div>
+                    </a>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascripts/logic.js"></script>
 </body>
 
 </html>
